@@ -8,7 +8,7 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    queryDB('SELECT * FROM "Product"', (err, result) => {
+    queryDB('SELECT * FROM "Product"', [], (err, result) => {
         if (err) return res.send('LOI');
         res.render('home', { mang: result.rows });
     });

@@ -5,7 +5,7 @@ const pool = new pg.Pool({
     port: 5432,
     database: 'NODE2906',
     password: 'khoapham',
-    max: 20,
+    max: 5,
     idleTimeoutMillis: 1000,
     user: 'postgres'
 });
@@ -18,10 +18,11 @@ const pool = new pg.Pool({
 //     });
 // });
 
-function queryDB(sql, cb) {
-    pool.connect((err, client) => {
+function queryDB(sql, arrayData, cb) {
+    pool.connect((err, client, done) => {
         if (err) return cb(err, null);
-        client.query(sql, (errQuery, result) => {
+        client.query(sql, arrayData, (errQuery, result) => {
+            done();
             if (errQuery) return cb(errQuery, null);
             cb(null, result);
         });
@@ -30,8 +31,8 @@ function queryDB(sql, cb) {
 
 function insertProduct(name, description, price, image, video, cb) {
     const insertSQL = `INSERT INTO "Product"(name, description, price, image, video)
-        VALUES ('${name}', '${description}', ${price}, '${image}', '${video}');`;
-    queryDB(insertSQL, (err, result) => {
+        VALUES ($1, $2, $3, $4, $5);`;
+    queryDB(insertSQL, [name, description, price, image, video], (err, result) => {
         if(err) return cb(err, null);
         cb(null, result);
     });
