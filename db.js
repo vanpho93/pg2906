@@ -10,10 +10,27 @@ const pool = new pg.Pool({
     user: 'postgres'
 });
 
-pool.connect((err, client) => {
-    if (err) return console.log(err);
-    client.query('SELECT * FROM "Product"', (errQuery, result) => {
-        if (errQuery) return console.log(errQuery);
-        console.log(result.rows);
+// pool.connect((err, client) => {
+//     if (err) return console.log(err);
+//     client.query('SELECT * FROM "Product"', (errQuery, result) => {
+//         if (errQuery) return console.log(errQuery);
+//         console.log(result.rows);
+//     });
+// });
+
+function queryDB(sql, cb) {
+    pool.connect((err, client) => {
+        if (err) return cb(err, null);
+        client.query(sql, (errQuery, result) => {
+            if (errQuery) return cb(errQuery, null);
+            cb(null, result);
+        });
     });
-});
+}
+
+// queryDB('SELECT * FROM "Product"', (err, result) => {
+//     if (err) return console.log(err.toString());
+//     console.log(result.rows);
+// });
+
+module.exports = queryDB;
