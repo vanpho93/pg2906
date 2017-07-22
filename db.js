@@ -28,9 +28,23 @@ function queryDB(sql, cb) {
     });
 }
 
+function insertProduct(name, description, price, image, video, cb) {
+    const insertSQL = `INSERT INTO "Product"(name, description, price, image, video)
+        VALUES ('${name}', '${description}', ${price}, '${image}', '${video}');`;
+    queryDB(insertSQL, (err, result) => {
+        if(err) return cb(err, null);
+        cb(null, result);
+    });
+}
 // queryDB('SELECT * FROM "Product"', (err, result) => {
 //     if (err) return console.log(err.toString());
 //     console.log(result.rows);
 // });
+// insertProduct('EEE', 'BBB', 100, 'CCC', 'DDD', err => {
+//     console.log(err);
+// });
 
-module.exports = queryDB;
+module.exports = {
+    queryDB, 
+    insertProduct
+};
