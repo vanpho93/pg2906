@@ -5,6 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
     </head>
     <body>
         <h1>Hello World</h1>
@@ -17,46 +23,16 @@
                 <td>Image</td>
                 <td>Video</td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Dell</td>
-                <td><p>It is a good product!</p></td>
-                <td>300</td>
-                <td>dell.png</td>
-                <td><p>172371637</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Dell</td>
-                <td><p>It is a good product!</p></td>
-                <td>300</td>
-                <td>dell.png</td>
-                <td><p>172371637</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Dell</td>
-                <td><p>It is a good product!</p></td>
-                <td>300</td>
-                <td>dell.png</td>
-                <td><p>172371637</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Dell</td>
-                <td><p>It is a good product!</p></td>
-                <td>300</td>
-                <td>dell.png</td>
-                <td><p>172371637</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Dell</td>
-                <td><p>It is a good product!</p></td>
-                <td>300</td>
-                <td>dell.png</td>
-                <td><p>172371637</p></td>
-            </tr>
+            <% mang.forEach(e => { %>
+                <tr>
+                    <td><%= e.id %></td>
+                    <td><%= e.name %></td>
+                    <td><p><%= e.description %></p></td>
+                    <td><%= e.price %></td>
+                    <td><%= e.image %></td>
+                    <td><p><%= e.video %></p></td>
+                </tr>
+            <% }); %>
         </table>
     </body>
 </html> 
