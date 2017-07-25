@@ -10,14 +10,6 @@ const pool = new pg.Pool({
     user: 'postgres'
 });
 
-// pool.connect((err, client) => {
-//     if (err) return console.log(err);
-//     client.query('SELECT * FROM "Product"', (errQuery, result) => {
-//         if (errQuery) return console.log(errQuery);
-//         console.log(result.rows);
-//     });
-// });
-
 function queryDB(sql, arrayData, cb) {
     pool.connect((err, client, done) => {
         if (err) return cb(err, null);
@@ -29,35 +21,6 @@ function queryDB(sql, arrayData, cb) {
     });
 }
 
-function insertProduct(name, description, price, image, video, cb) {
-    const insertSQL = `INSERT INTO "Product"(name, description, price, image, video)
-        VALUES ($1, $2, $3, $4, $5);`;
-    queryDB(insertSQL, [name, description, price, image, video], (err, result) => {
-        if(err) return cb(err, null);
-        cb(null, result);
-    });
-}
-
-function updateProduct(id, name, description, price, image, video, cb) {
-    const updateSQL = `UPDATE public."Product"
-	SET name=$1, description=$2, price=$3, image=$4, video=$5
-    WHERE id = $6;`;
-    queryDB(updateSQL, [name, description, price, image, video, id], cb);
-}
-
-function getProductById(id, cb) {
-    const selectSQL = 'SELECT * FROM "Product" WHERE id = $1';
-    queryDB(selectSQL, [id], (err, result) => {
-        if (err) return cb(err, null);
-        cb(null, result.rows[0]);
-    });
-}
-
-module.exports = {
-    queryDB, 
-    insertProduct,
-    updateProduct,
-    getProductById
-};
+module.exports = queryDB;
 
 // updateProduct(12, 'Khoa Pham', 'aaa', 1000, 'ccc', '123123', err => console.log(err));
