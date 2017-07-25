@@ -37,15 +37,18 @@ function insertProduct(name, description, price, image, video, cb) {
         cb(null, result);
     });
 }
-// queryDB('SELECT * FROM "Product"', (err, result) => {
-//     if (err) return console.log(err.toString());
-//     console.log(result.rows);
-// });
-// insertProduct('EEE', 'BBB', 100, 'CCC', 'DDD', err => {
-//     console.log(err);
-// });
+
+function updateProduct(id, name, description, price, image, video, cb) {
+    const updateSQL = `UPDATE public."Product"
+	SET name=$1, description=$2, price=$3, image=$4, video=$5
+    WHERE id = $6;`;
+    queryDB(updateSQL, [name, description, price, image, video, id], cb);
+}
 
 module.exports = {
     queryDB, 
-    insertProduct
+    insertProduct,
+    updateProduct
 };
+
+// updateProduct(12, 'Khoa Pham', 'aaa', 1000, 'ccc', '123123', err => console.log(err));
