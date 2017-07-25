@@ -45,10 +45,19 @@ function updateProduct(id, name, description, price, image, video, cb) {
     queryDB(updateSQL, [name, description, price, image, video, id], cb);
 }
 
+function getProductById(id, cb) {
+    const selectSQL = 'SELECT * FROM "Product" WHERE id = $1';
+    queryDB(selectSQL, [id], (err, result) => {
+        if (err) return cb(err, null);
+        cb(null, result.rows[0]);
+    });
+}
+
 module.exports = {
     queryDB, 
     insertProduct,
-    updateProduct
+    updateProduct,
+    getProductById
 };
 
 // updateProduct(12, 'Khoa Pham', 'aaa', 1000, 'ccc', '123123', err => console.log(err));

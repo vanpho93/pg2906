@@ -1,6 +1,6 @@
 const express = require('express');
 const parser = require('body-parser').urlencoded({ extended: false });
-const { queryDB, insertProduct } = require('./db');
+const { queryDB, insertProduct, getProductById } = require('./db');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -21,6 +21,14 @@ app.post('/add', parser, (req, res) => {
     insertProduct(name, description, price, image, video, err => {
         if (err) return res.send('CO LOI');
         res.send('Them thanh cong!');
+    });
+});
+
+app.get('/update/:id', (req, res) => {
+    const { id } = req.params;
+    getProductById(id, (err, product) => {
+        if (err) return res.send('Loi');
+        res.render('update', { product });
     });
 });
 
