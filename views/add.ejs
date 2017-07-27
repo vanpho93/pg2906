@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <form action="/add" method="POST">
+        <form action="/add" method="POST" enctype="multipart/form-data">
             <input type="text" name="name" placeholder="Name">
             <br><br>            
             <input type="text" name="description" placeholder="Desc">
             <br><br>            
             <input type="text" name="price" placeholder="Price">
             <br><br>
-            <input type="text" name="image" placeholder="Image">
+            <input type="file" name="image" placeholder="Image">
             <br><br>
             <input type="text" name="video" placeholder="Video">
             <br><br>

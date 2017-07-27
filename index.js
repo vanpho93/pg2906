@@ -1,5 +1,6 @@
 const express = require('express');
 const parser = require('body-parser').urlencoded({ extended: false });
+const imageParser = require('./uploadConfig').single('image');
 const Product = require('./Product');
 
 const app = express();
@@ -23,8 +24,9 @@ app.get('/', (req, res) => {
 
 app.get('/add', (req, res) => res.render('add'));
 
-app.post('/add', parser, (req, res) => {
-    const { name, description, price, image, video } = req.body;
+app.post('/add', imageParser, (req, res) => {
+    const { name, description, price, video } = req.body;
+    const image = req.file.filename;
     const product = new Product(name, description, image, video, price);
     product.insert(err => {
         if (err) return res.send('Loi');
@@ -48,7 +50,7 @@ app.get('/remove/:id', (req, res) => {
     });
 });
 
-app.post('/update/:id', parser, (req, res) => {
+app.post('/update/:id', (req, res) => {
     const { id } = req.params;
     const { name, description, price, image, video } = req.body;
     const product = new Product(name, description, image, video, price, id);
