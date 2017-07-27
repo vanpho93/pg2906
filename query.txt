@@ -1,0 +1,35 @@
+INSERT INTO "Product"(video, name, description, image)
+VALUES
+(
+    '225156927',
+    'Pedros Bay',
+    'A secret whispered from one to the next. Somewhere on an island far, far away is a parallel life on a forgotten beach—with emerald waves and mushroom forests. Where toucans talk and trees grow full of fruit. Where wine trickles off rocks and mermaid lagoons meet black jungles.',
+    '1.jpg'
+),
+(
+    '223522072',
+    'Cosmic Creek 2017',
+    'The 16th annual Vissla Cosmic Creek took place last weekend at the iconic Salt Creek Beach in Dana Point, California. We were greeted with sunshine and perfect waves for the alternative, more experimental board-riding style of the 70s and 80s...',
+    '2.jpg'
+),
+(
+    '222565139',
+    'Creators and Innovators Upcycle Contest 2017',
+    'Vissla has partnered up with our friends at the Surfrider Foundation to challenge you, the wave conscious, to take something that might be considered waste and create something that can be used in the ocean.',
+    '3.jpg'
+),
+(
+    '218505941',
+    'Woodside Collection',
+    'There are some folks in the world who just refuse to tone it down. One such artist is the brilliant Jason Woodside who paints new breath, life and voluminous color onto every mundane surface he touches. From warehouse doors to brick facades to surfboard fins and beyond, Technicolor polka dots, stripes and angles hint at Woodsides one-of-a-kind style. Weve again collaborated with Creator & Innovator Jason Woodside in this modern, exclusive and very limited collection of boardshorts and tees which, thanks to him, breathe new life into your wardrobe.',
+    '4.jpg'
+),
+(
+    '216580353',
+    'Upcycled Coconut Boardshorts',
+    'The process of upcycling converts waste into want. In making these garments, coconut husks were upcycled into an odor-resistant, fast drying, Cocotex® yarn. They are then blended with Repreve® recycled plastic bottles polyester yarns to create the perfect performance boardshort fabric that you can wear and enjoy. This reduces the amount of waste in the oceans and in landfills, giving you style you can feel good about.',
+    '5.jpg'
+)
+
+
+
