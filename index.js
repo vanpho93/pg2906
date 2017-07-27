@@ -7,7 +7,12 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
 
-app.get('/index', (req, res) => res.render('index'));
+app.get('/index', (req, res) => {
+    Product.getAllProduct((err, products) => {
+        if (err) return res.send('LOI');
+        res.render('index', { mang: products });
+    });
+});
 
 app.get('/', (req, res) => {
     Product.getAllProduct((err, products) => {
